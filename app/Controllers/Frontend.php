@@ -18,8 +18,10 @@ class Frontend extends BaseController
     }
 
     public function admin(){
-        return view('admin/dashboard');
+        echo view('admin/sidebar');
     }
+
+    
     
 
 }

@@ -42,6 +42,7 @@ class Auth extends BaseController
             'email' => $this->request->getPost('email'),
             'username' => $this->request->getPost('username'),
             'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+            'role' => 'User',
         );
         $model = new UserModel();
         $model->insert($data);
@@ -66,7 +67,7 @@ class Auth extends BaseController
                     'logged_in' => TRUE
                 ];
                 session()->set($sessionData);
-                return redirect()->to('/'); // Ubah sesuai kebutuhan
+                return redirect()->to('/admin'); // Ubah sesuai kebutuhan
             } else {
                 session()->setFlashdata('pesan', 'Password yang Anda masukkan salah.');
                 return redirect()->to('/login');
