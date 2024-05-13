@@ -9,6 +9,11 @@
             <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#importexcel">Import Excel</button>
             <div class="card">
                 <div class="card-body">
+                    <?php if (session()->has('success')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session('success') ?>
+                        </div>
+                    <?php endif; ?>
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
@@ -20,12 +25,14 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            <tr>
-                                <td><?= $no++; ?></td>
-                                <td>cek</td>
-                                <td>cek</td>
-                                <td>cek</td>
-                            </tr>
+                            <?php foreach ($parfum as $item) : ?>
+                                <tr>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $item['tanggal'] ?></td>
+                                    <td><?= $item['pendapatan'] ?></td>
+                                    <td><?= $item['modal'] ?></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -44,7 +51,7 @@
             </div>
             <div class="modal-body">
                 <!-- Form untuk input data -->
-                <form id="formTambah">
+                <form action="<?= base_url('Laporan/addData') ?>" method="POST">
                     <!-- Input field -->
                     <div class="mb-3">
                         <label for="tanggal" class="form-label">Tanggal</label>
@@ -58,12 +65,12 @@
                         <label for="modal" class="form-label">Modal</label>
                         <input type="modal" class="form-control" id="modal" name="modal">
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                <button type="button" class="btn btn-primary" id="simpanData">Simpan</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -76,16 +83,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formTambah">
+                <form action="<?= base_url('Laporan/importData') ?>" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="tanggal" class="form-label">Import File</label>
-                        <input type="file" class="form-control" id="excel" name="excel">
+                        <input type="file" class="form-control" id="file" name="file" accept=".xls,.xlsx,.csv" placeholder="Masukan File disini" required>
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                <button type="button" class="btn btn-primary" id="simpanData">Simpan</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
             </div>
         </div>
     </div>
