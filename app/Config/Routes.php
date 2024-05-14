@@ -30,7 +30,7 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/login', 'Frontend::index');
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Frontend::index');
 $routes->get('/register', 'Frontend::register');
 $routes->get('/admin', 'Frontend::admin');
 $routes->post('proses_login', 'Auth::proses_login');

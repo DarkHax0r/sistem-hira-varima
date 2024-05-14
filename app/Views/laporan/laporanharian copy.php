@@ -1,20 +1,17 @@
 <?= $this->extend('admin/sidebar') ?>
 <?= $this->section('main'); ?>
 
-<head>
-
-</head>
 <div class="page-title">
     <div class="row">
         <div class="col-12 col-md-6 order-md-1 order-last">
-            <h3>Kelola Laporan</h3>
-
+            <h3>DataTable</h3>
+          
         </div>
         <div class="col-12 col-md-6 order-md-2 order-first">
             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?= base_url('/admin') ?>">Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Laporan Harian</li>
+                    <li class="breadcrumb-item"><a href="<?= base_url('/admin')?>">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
                 </ol>
             </nav>
         </div>
@@ -35,20 +32,20 @@
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th style="text-align: center;">No</th>
-                                <th style="text-align: center;">Tanggal</th>
-                                <th style="text-align: center;">Pendapatan</th>
-                                <th style="text-align: center;">Modal</th>
+                                <th>Nomor</th>
+                                <th>Tanggal</th>
+                                <th>Pendapatan</th>
+                                <th>Modal</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
                             <?php foreach ($parfum as $item) : ?>
                                 <tr>
-                                    <td style="text-align: center;"><?= $no++ ?></td>
-                                    <td style="text-align: center;"><?= $item['tanggal'] ?></td>
-                                    <td style="text-align: center;"><?= $item['pendapatan'] ?></td>
-                                    <td style="text-align: center;"><?= $item['modal'] ?></td>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $item['tanggal'] ?></td>
+                                    <td><?= $item['pendapatan'] ?></td>
+                                    <td><?= $item['modal'] ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -77,11 +74,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="pendapatan" class="form-label">Pendapatan</label>
-                        <input type="number" min="0" class="form-control" id="pendapatan" name="pendapatan">
+                        <input type="text" class="form-control" id="pendapatan" name="pendapatan">
                     </div>
                     <div class="mb-3">
                         <label for="modal" class="form-label">Modal</label>
-                        <input type="number" min="0" class="form-control" id="modal" name="modal">
+                        <input type="modal" class="form-control" id="modal" name="modal">
                     </div>
             </div>
             <div class="modal-footer">
@@ -116,10 +113,30 @@
     </div>
 </div>
 
-<script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<?= $this->endSection(); ?>
+
+<?= $this->section('scripts'); ?>
+<script src="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css"></script>
 <script>
-    new DataTable('#table1');
+    $(document).ready(function() {
+        $('#table1').DataTable();
+
+        $('button[data-bs-target="#tambahModal"]').click(function() {
+            $('#tambahModal').modal('show');
+        });
+
+        $('#simpanData').click(function() {
+            // Ambil nilai dari form
+            var tanggal = $('#tanggal').val();
+            $('#tambahModal').modal('hide');
+        });
+    });
 </script>
+
+<!-- DATATABLES BS 4-->
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script>
 
 <?= $this->endSection(); ?>

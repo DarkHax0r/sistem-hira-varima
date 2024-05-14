@@ -54,9 +54,6 @@
         </a>
     </header>
 
-    <div class="page-heading">
-        <h3>Selamat Datang</h3>
-    </div>
 
     <!-- content -->
     <div class="page-content">
