@@ -106,6 +106,10 @@
                         <label for="tanggal" class="form-label">Import File</label>
                         <input type="file" class="form-control" id="file" name="file" accept=".xls,.xlsx,.csv" placeholder="Masukan File disini" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="tanggal" class="form-label">Import File</label>
+                        <a href="#" class="btn btn-success" id="export-file">Export File</a>
+                    </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

@@ -35,4 +35,5 @@ $routes->get('/register', 'Frontend::register');
 $routes->get('/admin', 'Frontend::admin');
 $routes->post('proses_login', 'Auth::proses_login');
 $routes->post('/register_proses', 'Auth::register_proses');
+$routes->get('/main', 'Frontend::main');
 
